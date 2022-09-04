@@ -1,0 +1,2248 @@
+{
+  "swagger": "2.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Swagger testing for Admin/Sub-Admin",
+    "description": "This is assignment of Admin/sub-Admin done by vaneet kumar",
+    "contact": { "email": "vaneet.k@applify.co" },
+    "license": {
+      "name": "",
+      "url": ""
+    }
+  },
+  "schemes": ["http", "https"],
+  "tags": {
+    "name": "Super-Admin/Sub-Admin/user",
+    "description": "users api"
+  },
+  "securityDefinitions": {
+    "bearerAuth": {
+      "name": "Authorization",
+      "in": "header",
+      "type": "apiKey",
+      "description": "JWT Authorization header"
+    }
+  },
+  "security": [{ "bearerAuth": [] }],
+  "paths": {
+    "/admin/AdminRegistration": {
+      "post": {
+        "summary": "Super-Admin/Sub-Admin/user",
+        "tags": ["Super-Admin/Sub-Admin/user"],
+        "content": ["application/json"],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "formData",
+            "description": "enter name",
+            "required": "true",
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "in": "formData",
+            "description": "Enter email",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "description": "Enter a password",
+            "required": "true",
+            "type": "string"
+          },
+          {
+            "name": "title",
+            "in": "formData",
+            "description": "Enter Super-Admin",
+            "required": "true",
+            "type": "string",
+            "value": "Super-Admin"
+          },
+          {
+            "name": "image",
+            "in": "formData",
+            "required": "true",
+            "type": "file"
+          }
+        ],
+
+        "responses": {
+          "200": {
+            "description": "Registration Successfull",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/admin/registration": {
+      "post": {
+        "summary": "Sub-Admin Registration. Firstly login then enter token in the authorize",
+        "tags": ["Super-Admin/Sub-Admin/user"],
+        "content": ["application/json"],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "formData",
+            "description": "Enter name",
+            "required": "true",
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "in": "formData",
+            "description": "Enter email",
+            "required": "true",
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "description": "Enter a password",
+            "required": "true",
+            "type": "string"
+          },
+          {
+            "name": "title",
+            "in": "formData",
+            "description": "Enter Sub Admin",
+            "required": "true",
+            "type": "string",
+            "value": "Sub-Admin"
+          },
+          {
+            "name": "image",
+            "in": "formData",
+            "required": "true",
+            "type": "file"
+          },
+          {
+            "name": "RegistrationPermission",
+            "in": "formData",
+            "description": "For give the permission enter 1 otherwise 0",
+            "required": "true",
+            "type": "string"
+          },
+          {
+            "name": "BlockedPermission",
+            "in": "formData",
+            "description": "For give the permission enter 1 otherwise 0",
+            "required": "true",
+            "type": "string"
+          },
+          {
+            "name": "UnblockedPermission",
+            "in": "formData",
+            "description": "For give the permission enter 1 otherwise 0",
+            "required": "true",
+            "type": "string"
+          },
+          {
+            "name": "DeletedPermission",
+            "in": "formData",
+            "description": "For give the permission enter 1 otherwise 0",
+            "required": "true",
+            "type": "string"
+          },
+          {
+            "name": "EditPermission",
+            "in": "formData",
+            "description": "For give the permission enter 1 otherwise 0",
+            "required": "true",
+            "type": "string"
+          }
+        ],
+
+        "responses": {
+          "200": {
+            "description": "Registration Successfull",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/admin/Userregistration": {
+      "post": {
+        "summary": "User Registration.",
+        "tags": ["Super-Admin/Sub-Admin/user"],
+        "content": ["application/json"],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "formData",
+            "description": "Enter name",
+            "required": "true",
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "in": "formData",
+            "description": "Enter email",
+            "required": "true",
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "description": "Enter a password",
+            "required": "true",
+            "type": "string"
+          },
+          {
+            "name": "title",
+            "in": "formData",
+            "description": "Enter Only user",
+            "required": "true",
+            "type": "string",
+            "value": "User"
+          },
+          {
+            "name": "image",
+            "in": "formData",
+            "required": "true",
+            "type": "file"
+          }
+        ],
+
+        "responses": {
+          "200": {
+            "description": "User Registration Successfull",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+
+    "/admin/login": {
+      "post": {
+        "summary": "Login",
+        "tags": ["Super-Admin/Sub-Admin/user"],
+        "content": ["application/json"],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "formData",
+            "description": "enter email",
+            "required": "true",
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "description": "enter a password",
+            "required": "true",
+            "type": "string"
+          }
+        ],
+
+        "responses": {
+          "200": {
+            "description": "Login Successfull",
+            "schema": {
+              "type": ""
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/admin/changepassword": {
+      "post": {
+        "summary": "Change password",
+        "tags": ["Super-Admin/Sub-Admin/user"],
+        "content": ["application/json"],
+        "parameters": [
+          {
+            "name": "old_password",
+            "in": "formData",
+            "description": "Enter a old password",
+            "required": "true",
+            "type": "string"
+          },
+          {
+            "name": "new_password",
+            "in": "formData",
+            "description": "Enter a new password",
+            "required": "true",
+            "type": "string"
+          }
+        ],
+
+        "responses": {
+          "200": {
+            "description": "Change Successfull",
+            "schema": {
+              "type": ""
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/admin/send-reset-password-email": {
+      "post": {
+        "summary": "Forget password",
+        "tags": ["Super-Admin/Sub-Admin/user"],
+        "content": ["application/json"],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "formData",
+            "description": "enter email",
+            "required": "true",
+            "type": "string"
+          }
+        ],
+
+        "responses": {
+          "200": {
+            "description": "Send mail Successfull",
+            "schema": {
+              "type": ""
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/admin/list": {
+      "get": {
+        "tags": ["Super-Admin/Sub-Admin/user"],
+        "description": "List all the admins that are blocked or not blocked, but not deleted, alongwith count of users. And also we can filter admins by their name, if admin wants to see only blocked admins then apply blocked filter, and if admin want to see only non blocked admins then apply that filter",
+        "parameters": [
+          {
+            "name": "limit",
+            "description": "Limit",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "value": "10"
+          },
+          {
+            "name": "skip",
+            "description": "Skip",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "value": "0"
+          },
+          {
+            "name": "sortBy",
+            "description": "sort by",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": ["name", "CreatedAt", "email", "title", "Image"],
+            "value": ""
+          },
+          {
+            "name": "orderBy",
+            "description": "order by",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": ["ASC", "DESC"],
+            "value": ""
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "Search",
+            "type": "string",
+            "value": ""
+          },
+          {
+            "name": "Isblocked",
+            "enum": [0, 1],
+            "description": "Blocked admin users",
+            "in": "query",
+            "type": "integer",
+            "required": false
+          },
+          {
+            "name": "title",
+            "enum": ["Super-Admin", "Sub-Admin", "user"],
+            "description": "",
+            "in": "query",
+            "type": "string",
+            "required": false
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/admin/editAdminDetails/{id}": {
+      "put": {
+        "summary": "Change user profile",
+        "tags": ["Super-Admin/Sub-Admin/user"],
+        "content": ["application/json"],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "formData",
+            "description": "Enter name",
+            "required": "true",
+            "type": "string"
+          },
+          {
+            "name": "adminId",
+            "in": "formData",
+            "description": "Enter adminId",
+            "required": "true",
+            "type": "string"
+          },
+          {
+            "name": "title;",
+            "in": "formData",
+            "description": "Enter title",
+            "required": "true",
+            "type": "string"
+          }
+        ],
+
+        "responses": {
+          "200": {
+            "description": "Change Successfull",
+            "schema": {
+              "type": ""
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/admin/block": {
+      "put": {
+        "summary": "Blocked user.Need to login first and need token",
+        "content": ["application/json"],
+        "tags": ["Super-Admin/Sub-Admin/user"],
+        "parameters": [
+          {
+            "name": "adminId",
+            "in": "formData",
+            "description": "Enter AdminId",
+            "required": "true",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Blocked Successfull",
+            "schema": {
+              "type": ""
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/admin/unblock": {
+      "put": {
+        "summary": "UnBlocked user.Need to login first and need token",
+        "content": ["application/json"],
+        "tags": ["Super-Admin/Sub-Admin/user"],
+
+        "parameters": [
+          {
+            "name": "adminId",
+            "in": "formData",
+            "description": "Enter AdminId",
+            "required": "true",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "UnBlocked Successfull",
+            "schema": {
+              "type": ""
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/admin/edit": {
+      "put": {
+        "summary": "Edit user.Need to login first and need token",
+        "tags": ["Super-Admin/Sub-Admin/user"],
+        "content": ["application/json"],
+        "parameters": [
+          {
+            "name": "adminId",
+            "in": "formData",
+            "description": "Enter AdminId",
+            "required": "true",
+            "type": "string"
+          },
+          {
+            "name": "RegistrationPermission",
+            "in": "formData",
+            "description": "For give the permission enter 1 otherwise 0",
+            "required": "true",
+            "type": "string"
+          },
+          {
+            "name": "BlockedPermission",
+            "in": "formData",
+            "description": "For give the permission enter 1 otherwise 0",
+            "required": "true",
+            "type": "string"
+          },
+          {
+            "name": "UnblockedPermission",
+            "in": "formData",
+            "description": "For give the permission enter 1 otherwise 0",
+            "required": "true",
+            "type": "string"
+          },
+          {
+            "name": "DeletedPermission",
+            "in": "formData",
+            "description": "For give the permission enter 1 otherwise 0",
+            "required": "true",
+            "type": "string"
+          },
+          {
+            "name": "EditPermission",
+            "in": "formData",
+            "description": "For give the permission enter 1 otherwise 0",
+            "required": "true",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Edit Successfull",
+            "schema": {
+              "type": ""
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/admin/delete": {
+      "delete": {
+        "summary": "Delete user.Need to login first and need token",
+        "tags": ["Super-Admin/Sub-Admin/user"],
+        "content": ["application/json"],
+        "parameters": [
+          {
+            "name": "adminId",
+            "in": "formData",
+            "description": "Enter AdminId",
+            "required": "true",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Blocked Successfull",
+            "schema": {
+              "type": ""
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/notification/sendNotification": {
+      "post": {
+        "summary": "Notification send",
+        "tags": ["Notiification"],
+        "content": ["application/json"],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "formData",
+            "description": "enter user id",
+            "required": "true",
+            "type": "string"
+          },
+          {
+            "name": "notification",
+            "in": "formData",
+            "description": "Enter notification",
+            "required": "true",
+            "type": "string"
+          },
+          {
+            "name": "userType",
+            "in": "formData",
+            "description": "Enter a userType only IOS and Android",
+            "required": "true",
+            "type": "string"
+          },
+          {
+            "name": "image",
+            "in": "formData",
+            "required": "true",
+            "type": "file"
+          }
+        ],
+
+        "responses": {
+          "200": {
+            "description": "Notification add successfull",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/notification/list": {
+      "get": {
+        "summary": "View Notification Detail",
+        "tags": ["Notiification"],
+        "content": ["application/json"],
+        "parameters": [
+          {
+            "name": "limit",
+            "description": "Limit",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "value": "10"
+          },
+          {
+            "name": "skip",
+            "description": "Skip",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "value": "0"
+          },
+          {
+            "name": "sortBy",
+            "description": "sort by",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": ["userType", "CreatedAt"],
+            "value": ""
+          },
+          {
+            "name": "orderBy",
+            "description": "order by",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": ["ASC", "DESC"],
+            "value": ""
+          },
+          {
+            "name": "userType",
+            "enum": ["IOS", "Andriod"],
+            "description": "",
+            "in": "query",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "name",
+            "description": "",
+            "in": "query",
+            "type": "string",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/notification/edit": {
+      "put": {
+        "summary": "Edit user.Need to login first and need token",
+        "tags": ["Notiification"],
+        "content": ["application/json"],
+        "parameters": [
+          {
+            "name": "notificationId ",
+            "in": "formData",
+            "description": "Enter notificationId ",
+            "required": "true",
+            "type": "string"
+          },
+          {
+            "name": "notification",
+            "in": "formData",
+            "description": "Enter notification",
+            "required": "true",
+            "type": "string"
+          },
+          {
+            "name": "userType",
+            "in": "formData",
+            "description": "Enter userType (IOS/Android)",
+            "required": "true",
+            "type": "string"
+          },
+          {
+            "name": "image",
+            "in": "formData",
+            "required": "true",
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Edit Successfull",
+            "schema": {
+              "type": ""
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/notification/delete": {
+      "delete": {
+        "summary": "Delete notification.Need to login first and need token",
+        "tags": ["Notiification"],
+        "content": ["application/json"],
+        "parameters": [
+          {
+            "name": "notificationId",
+            "in": "formData",
+            "description": "Enter notificationId",
+            "required": "true",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Delete Successfull",
+            "schema": {
+              "type": ""
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/feedback/feed/addFeed": {
+      "post": {
+        "summary": "add feedback",
+        "tags": ["Feedback"],
+        "parameters": [
+          {
+            "name": "uId",
+            "in": "formData",
+            "description": "enter userId",
+            "required": "true",
+            "type": "string"
+          },
+          {
+            "name": "comment",
+            "in": "formData",
+            "description": "enter your comment",
+            "required": "true",
+            "type": "string"
+          },
+          {
+            "name": "rating",
+            "in": "formData",
+            "description": "give ratings",
+            "enum": ["1 star", "2 star", "3 star", "4 star", "5 star"],
+            "required": "true",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": ""
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/feedback/feed/view/{id}": {
+      "get": {
+        "summary": "getting feedback details",
+        "tags": ["Feedback"],
+        "description": "get all feedback details",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": "true",
+            "description": "Enter particular feedback Id",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/feedback/ratingAndComment": {
+      "get": {
+        "summary": "Filter on the based on rating and comment",
+        "tags": ["Feedback"],
+        "content": ["application/json"],
+        "parameters": [
+          {
+            "name": "limit",
+            "description": "Limit",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "value": "10"
+          },
+          {
+            "name": "skip",
+            "description": "Skip",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "value": "0"
+          },
+          {
+            "name": "sortBy",
+            "description": "sort by",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": ["CreatedAt", "comment", "rating"],
+            "value": ""
+          },
+          {
+            "name": "orderBy",
+            "description": "order by",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": ["ASC", "DESC"],
+            "value": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/feedback/feed/deleteFeed": {
+      "delete": {
+        "tags": ["Feedback"],
+        "summary": "Delete Feedback",
+        "description": "Admin can delete feedbacks",
+        "content": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "formData",
+            "description": "enter feedback id",
+            "required": "true",
+            "type": "string"
+          },
+          {
+            "name": "adminId",
+            "in": "formData",
+            "description": "enter user-id who gave the particular feedback",
+            "required": "true",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deletion Successful",
+            "schema": {
+              "type": ""
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/category/addCategory": {
+      "post": {
+        "security": [{ "Bearer": [] }],
+        "summary": "Will add the parent categories",
+        "tags": ["Categories"],
+        "content": ["application/json"],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "formData",
+            "required": "true",
+            "type": "string"
+          },
+          {
+            "name": "image",
+            "in": "formData",
+            "required": "true",
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Category Added Successfully",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/category/list": {
+      "get": {
+        "tags": ["Categories"],
+        "description": "List all the categories that are not deleted, alongwith count of categories. And also we can filter categories by name.",
+        "parameters": [
+          {
+            "name": "limit",
+            "description": "Limit",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "value": "10"
+          },
+          {
+            "name": "skip",
+            "description": "Skip",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "value": "0"
+          },
+          {
+            "name": "sortBy",
+            "description": "sort by",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": ["name", "cId", "createdAt", "image"],
+            "value": ""
+          },
+          {
+            "name": "orderBy",
+            "description": "order by",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": ["ASC", "DESC"],
+            "value": ""
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "Search",
+            "type": "string",
+            "value": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/category/update/category": {
+      "put": {
+        "tags": ["Categories"],
+        "summary": "Edit Or Update / Admin Can Change The Name Of The Parent Category",
+        "content": ["application/json"],
+        "parameters": [
+          {
+            "name": "cId",
+            "in": "formData",
+            "description": "Enter parent category id",
+            "required": "true",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "formData",
+            "description": "Enter New Name For The Category",
+            "required": "true",
+            "type": "string"
+          },
+          {
+            "name": "image",
+            "in": "formData",
+            "required": "true",
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Edit Or Updation Successful",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/category/deleteCategory": {
+      "delete": {
+        "tags": ["Categories"],
+        "summary": "Delete Sub-Category",
+        "description": "Admin can delete sub-categories",
+        "content": ["application/json"],
+        "parameters": [
+          {
+            "name": "scId",
+            "in": "formData",
+            "description": "Enter sub-category id",
+            "required": "true",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deletion Successful",
+            "schema": {
+              "type": ""
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/FAQ/add": {
+      "post": {
+        "summary": "Add all FAQ",
+        "tags": ["FAQ"],
+        "content": ["application/json"],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "formData",
+            "description": "Enter user name",
+            "required": "true",
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "in": "formData",
+            "description": "Enter user Email",
+            "required": "true",
+            "type": "string"
+          },
+          {
+            "name": "FAQ",
+            "in": "formData",
+            "description": "Enter your question",
+            "required": "true",
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "in": "formData",
+            "description": "Enterstatus",
+            "enum": ["solved", "unsolved"],
+            "required": "true",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "FAQ and user Added Successfully",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/FAQ/filter": {
+      "get": {
+        "summary": "getting FAQ filter details",
+        "tags": ["FAQ"],
+        "description": "get FAQ details",
+        "parameters": [
+          {
+            "name": "limit",
+            "description": "Limit",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "value": "10"
+          },
+          {
+            "name": "skip",
+            "description": "Skip",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "value": "0"
+          },
+          {
+            "name": "sortBy",
+            "description": "sort by",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": ["userType", "CreatedAt"],
+            "value": ""
+          },
+          {
+            "name": "orderBy",
+            "description": "order by",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": ["ASC", "DESC"],
+            "value": ""
+          },
+          {
+            "name": "name",
+            "in": "formData",
+            "description": "Enter user name",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Enter status",
+            "enum": ["solved", "unsolved"],
+            "required": false,
+            "type": "string",
+            "value": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/FAQ/view": {
+      "get": {
+        "summary": "Getting all FAQ details",
+        "tags": ["FAQ"],
+        "description": "Getting all App details",
+
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/FAQ/edit": {
+      "put": {
+        "summary": "Edit user.Need to login first and need token",
+        "tags": ["FAQ"],
+        "content": ["application/json"],
+        "parameters": [
+          {
+            "name": "Faqid ",
+            "in": "formData",
+            "description": "Enter Faqid ",
+            "required": "true",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Edit Successfull",
+            "schema": {
+              "type": ""
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/FAQ/delete": {
+      "delete": {
+        "tags": ["FAQ"],
+        "summary": "Delete FAQ. Need to login then need token",
+        "description": "Admin can delete FAQ",
+        "content": ["application/json"],
+        "parameters": [
+          {
+            "name": "Faqid",
+            "in": "formData",
+            "description": "Enter feedback id",
+            "required": "true",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deletion Successful",
+            "schema": {
+              "type": ""
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/app/addVersion": {
+      "post": {
+        "summary": "Add all App and version",
+        "tags": ["App Version"],
+        "content": ["application/json"],
+        "parameters": [
+          {
+            "name": "AppName",
+            "in": "formData",
+            "description": "Enter user name",
+            "enum": ["user", "derived"],
+            "required": "true",
+            "type": "string"
+          },
+          {
+            "name": "plateform",
+            "in": "formData",
+            "description": "Enter user Email",
+            "enum": ["IOS", "Andriod"],
+            "required": "true",
+            "type": "string"
+          },
+          {
+            "name": "minimumVersion",
+            "in": "formData",
+            "description": "Enter minimum version like 0.0.0",
+            "required": "true",
+            "type": "string"
+          },
+          {
+            "name": "latestVersion",
+            "in": "formData",
+            "description": "Enter latest version like 0.0.0",
+            "required": "true",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "App name and version Added Successfully",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/app/getVersion": {
+      "get": {
+        "summary": "Getting all App details",
+        "tags": ["App Version"],
+        "description": "Getting all App details",
+
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/app/filterVersion": {
+      "get": {
+        "summary": "Getting all App details",
+        "tags": ["App Version"],
+        "description": "Getting all App details",
+        "parameters": [
+          {
+            "name": "limit",
+            "description": "Limit",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "value": "10"
+          },
+          {
+            "name": "skip",
+            "description": "Skip",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "value": "0"
+          },
+          {
+            "name": "sortBy",
+            "description": "sort by",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "AppName",
+              "plateform",
+              "minimumVersion",
+              "latestVersion",
+              "CreatedAt"
+            ],
+            "value": ""
+          },
+          {
+            "name": "orderBy",
+            "description": "order by",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": ["ASC", "DESC"],
+            "value": ""
+          },
+          {
+            "name": "plateform",
+            "in": "query",
+            "description": "Enter user plateform",
+            "enum": ["IOS", "Andriod"],
+            "required": false,
+            "type": "string",
+            "value": ""
+          },
+          {
+            "name": "name",
+            "description": "",
+            "in": "query",
+            "type": "string",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/app/edit": {
+      "put": {
+        "summary": "Edit user.Need to login first and need token",
+        "tags": ["App Version"],
+        "content": ["application/json"],
+        "parameters": [
+          {
+            "name": "AppId",
+            "in": "formData",
+            "description": "Enter AppId ",
+            "required": "true",
+            "type": "string"
+          },
+          {
+            "name": "latestVersion",
+            "in": "formData",
+            "description": "Enter latest version like 0.0.0",
+            "required": "true",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Edit Successfull",
+            "schema": {
+              "type": ""
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/app/delete": {
+      "delete": {
+        "tags": ["App Version"],
+        "summary": "Delete App . Need to login then need token",
+        "description": "Admin can delete App",
+        "content": ["application/json"],
+        "parameters": [
+          {
+            "name": "AppId",
+            "in": "formData",
+            "description": "Enter app id",
+            "required": "true",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deletion Successful",
+            "schema": {
+              "type": ""
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/Achivement/AddAchivement": {
+      "post": {
+        "summary": "Add admin achivement",
+        "tags": ["Admin Achivemenet"],
+        "content": ["application/json"],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "formData",
+            "description": "Enter admin achivement",
+            "required": "true",
+            "type": "string"
+          },
+          {
+            "name": "Type",
+            "in": "formData",
+            "description": "Enter Type",
+            "required": "true",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Admin achivement Added Successfully",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/Achivement/list": {
+      "get": {
+        "tags": ["Admin Achivemenet"],
+        "parameters": [
+          {
+            "name": "limit",
+            "description": "Limit",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "value": "10"
+          },
+          {
+            "name": "skip",
+            "description": "Skip",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "value": "0"
+          },
+          {
+            "name": "sortBy",
+            "description": "sort by",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": ["name", "CreatedAt", "Type"],
+            "value": ""
+          },
+          {
+            "name": "orderBy",
+            "description": "order by",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": ["ASC", "DESC"],
+            "value": ""
+          },
+          {
+            "name": "search",
+            "description": "On search seen all achivement of single name and type",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "Cricket-Bowling",
+              "Cricket-Batsman",
+              "Stage",
+              "Sequential",
+              "Parallel",
+              "Sequential"
+            ],
+            "value": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/Achivement/edit": {
+      "put": {
+        "summary": "Edit admin Achivemenet.Need to login first and need token",
+        "tags": ["Admin Achivemenet"],
+        "content": ["application/json"],
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "formData",
+            "description": "Enter Id",
+            "required": "true",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "formData",
+            "description": "",
+            "required": "true",
+            "type": "string"
+          },
+          {
+            "name": "Type",
+            "in": "formData",
+            "description": "",
+            "required": "true",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Edit Successfull",
+            "schema": {
+              "type": ""
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/Achivement/delete": {
+      "delete": {
+        "tags": ["Admin Achivemenet"],
+        "content": ["application/json"],
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "formData",
+            "description": "Enter Admin achivement Id",
+            "required": "true",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Delete Successfull",
+            "schema": {
+              "type": ""
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/Achivementlink/AddAchivement": {
+      "post": {
+        "summary": "Add admin achivement",
+        "tags": ["Admin Achivemenet link"],
+        "content": ["application/json"],
+        "parameters": [
+          {
+            "name": "achivementId",
+            "in": "formData",
+            "description": "Enter Achivement id",
+            "required": "true",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "formData",
+            "description": "Enter admin achivement",
+            "required": "true",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Admin achivement link Added Successfully",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/Achivementlink/edit": {
+      "put": {
+        "summary": "Edit admin Achivemenet.Need to login first and need token",
+        "tags": ["Admin Achivemenet link"],
+        "content": ["application/json"],
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "formData",
+            "description": "Enter Id",
+            "required": "true",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "formData",
+            "description": "",
+            "required": "true",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Edit Successfull",
+            "schema": {
+              "type": ""
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/Achivementlink/delete": {
+      "delete": {
+        "tags": ["Admin Achivemenet link"],
+        "content": ["application/json"],
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "formData",
+            "description": "Enter Admin achivement Id",
+            "required": "true",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Delete Successfull",
+            "schema": {
+              "type": ""
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/ReprotedContent/AddReported": {
+      "post": {
+        "summary": "Add Reported Content",
+        "tags": ["Reported Content"],
+        "content": ["application/json"],
+        "parameters": [
+          {
+            "name": "ReportedBy",
+            "in": "formData",
+            "description": "Enter name who is report",
+            "required": "true",
+            "type": "string"
+          }, 
+          {
+            "name": "ReportedItem",
+            "in": "formData",
+            "description": "Enter Reported Item",
+            "enum":["POST","COMMENT"],
+            "required": "true",
+            "type": "string",
+            "value":" "
+          },
+          {
+            "name": "Status",
+            "in": "formData",
+            "description": "Enter item",
+            "enum":["pending", "approved", "declined"],
+            "required": "true",
+            "type": "string",
+            "value":"pending"
+          }, {
+            "name": "Description",
+            "in": "formData",
+            "description": "Enter Description",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Reported Added Successfully",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/ReprotedContent/list": {
+      "get": {
+        "tags": ["Reported Content"],
+        "parameters": [
+          {
+            "name": "limit",
+            "description": "Limit",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "value": "10"
+          },
+          {
+            "name": "skip",
+            "description": "Skip",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "value": "0"
+          },
+          {
+            "name": "sortBy",
+            "description": "sort by",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": ["ReportedBy", "CreatedAt", "ReportedItem", "Date"],
+            "value": ""
+          },
+          {
+            "name": "orderBy",
+            "description": "order by",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": ["ASC", "DESC"],
+            "value": ""
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "Search",
+            "type": "string",
+            "value": ""
+          },
+          {
+            "name": "Status",
+            "enum": ["pending", "approved", "declined"],
+            "description": "status by check",
+            "in": "query",
+            "type": "string",
+            "required": false
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/ReprotedContent/edit": {
+      "put": {
+        "summary": "Edit Reported Content.Need to login first and need token",
+        "tags": ["Reported Content"],
+        "content": ["application/json"],
+        "parameters": [
+          {
+            "name": "Id ",
+            "in": "formData",
+            "description": "Enter Reported Content Id ",
+            "required": "true",
+            "type": "string"
+          },
+          {
+            "name": "Status",
+            "in": "formData",
+            "description": "Enter status",
+            "enum":["pending", "approved", "declined"],
+            "required": "true",
+            "type": "string"
+          },
+          {
+            "name": "Description",
+            "in": "formData",
+            "description": "Enter Description",
+            "required": "true",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Edit Successfull",
+            "schema": {
+              "type": ""
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/RepotedBug/AddReported": {
+      "post": {
+        "summary": "Add Reported Content",
+        "tags": ["RepotedBug"],
+        "content": ["application/json"],
+        "parameters": [
+          {
+            "name": "ReportedBy",
+            "in": "formData",
+            "description": "Enter name who is report",
+            "required": "true",
+            "type": "string"
+          }, 
+          {
+            "name": "ReportedItem",
+            "in": "formData",
+            "description": "Enter Reported Item",
+            "enum":["POST","COMMENT"],
+            "required": "true",
+            "type": "string",
+            "value":" "
+          },
+          {
+            "name": "Status",
+            "in": "formData",
+            "description": "Enter item",
+            "enum":["pending", "approved", "declined"],
+            "required": "true",
+            "type": "string",
+            "value":"pending"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Reported Added Successfully",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/RepotedBug/list": {
+      "get": {
+        "tags": ["RepotedBug"],
+        "parameters": [
+          {
+            "name": "limit",
+            "description": "Limit",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "value": "10"
+          },
+          {
+            "name": "skip",
+            "description": "Skip",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "value": "0"
+          },
+          {
+            "name": "sortBy",
+            "description": "sort by",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": ["ReportedBy", "CreatedAt", "ReportedItem", "Date"],
+            "value": ""
+          },
+          {
+            "name": "orderBy",
+            "description": "order by",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": ["ASC", "DESC"],
+            "value": ""
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "Search",
+            "type": "string",
+            "value": ""
+          },
+          {
+            "name": "Status",
+            "enum": ["pending", "approved", "declined"],
+            "description": "status by check",
+            "in": "query",
+            "type": "string",
+            "required": false
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/RepotedBug/edit": {
+      "put": {
+        "summary": "Edit Reported Content.Need to login first and need token",
+        "tags": ["RepotedBug"],
+        "content": ["application/json"],
+        "parameters": [
+          {
+            "name": "Id ",
+            "in": "formData",
+            "description": "Enter Reported Content Id ",
+            "required": "true",
+            "type": "string"
+          },
+          {
+            "name": "Status",
+            "in": "formData",
+            "description": "Enter status",
+            "enum":["pending", "approved", "declined"],
+            "required": "true",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Edit Successfull",
+            "schema": {
+              "type": ""
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/api/registration": {
+      "post": {
+        "summary": "User registration",
+        "tags": ["User"],
+        "content": ["application/json"],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "formData",
+            "description": "enter name",
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "in": "formData",
+            "description": "Enter email",
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "description": "Enter a password",
+            "type": "string"
+          },
+          {
+            "name": "phoneNumber",
+            "in": "formData",
+            "description": "Enter PhoneNumber",
+            "type": "string"
+          }
+        ],
+
+        "responses": {
+          "200": {
+            "description": "User Registered Successfully!!",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/api/login": {
+      "post": {
+        "summary": "User Login",
+        "tags": ["User"],
+        "content": ["application/json"],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "formData",
+            "description": "Enter email",
+            "type": "string"
+          },
+          {
+            "name": "phoneNumber",
+            "in": "formData",
+            "description": "Enter your phoneNumber",
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "description": "Enter a password",
+            "type": "string"
+          }
+        ],
+
+        "responses": {
+          "200": {
+            "description": "Successfully Login",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "405": {
+            "description": "Unable to Login"
+          }
+        }
+      }
+    },
+    "/api/countuserByPhoneNumber": {
+      "get": {
+        "summary": "Count of Users with Phone Number",
+        "tags": ["User"],
+        "content": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Count Shown",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "405": {
+            "description": "Unable to show the users"
+          }
+        }
+      }
+    },
+    "/api/countuserByEmail": {
+      "get": {
+        "summary": "Count of Users using EMAIL",
+        "tags": ["User"],
+        "content": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Count Shown",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "405": {
+            "description": "Unable to show the users"
+          }
+        }
+      }
+    },
+    "/api/getUserBygoogleId": {
+      "get": {
+        "summary": "Count of Users using GoogleID",
+        "tags": ["User"],
+        "content": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Count Shown",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "405": {
+            "description": "Unable to show the users"
+          }
+        }
+      }
+    },
+    "/api/getUserByFacebookId": {
+      "get": {
+        "summary": "Count of Users using GoogleID",
+        "tags": ["User"],
+        "content": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Count Shown",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "405": {
+            "description": "Unable to show the users"
+          }
+        }
+      }
+    },
+    "/api/updateUser": {
+      "put": {
+        "summary": "User Updation",
+        "tags": ["User"],
+        "content": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "formData",
+            "description": "Enter User ID",
+            "required": "true",
+            "type": "string"
+          },
+          {
+            "name": "gender",
+            "in": "formData",
+            "description": "Enter your Gender",
+            "type": "string"
+          },
+          {
+            "name": "Age",
+            "in": "formData",
+            "description": "Enter your Age",
+            "type": "string"
+          },
+          {
+            "name": "Address",
+            "in": "formData",
+            "description": "Enter your Address",
+            "type": "string"
+          }
+        ],
+
+        "responses": {
+          "200": {
+            "description": "User Data updated Successfully!!",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/api/logout": {
+      "get": {
+        "summary": "Logout User",
+        "tags": ["User"],
+        "content": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "User Logout Successfully",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "405": {
+            "description": "User Logout Fail"
+          }
+        }
+      }
+    },
+    "/api/delete/{id}": {
+      "delete": {
+        "summary": "Delete user.Need to login first and need token",
+        "tags": ["User"],
+        "content": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "formData",
+            "description": "Enter User Id",
+            "required": "true",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Delete Successfull",
+            "schema": {
+              "type": ""
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    }
+  }
+}
