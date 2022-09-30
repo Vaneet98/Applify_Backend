@@ -51,6 +51,16 @@ router.put("/edit/:Id", (req, res) => {
     );
   });
   
-
+  router.get(
+    "/list/:Id",
+    (req, res) => {
+      return sendResponse.executeMethod(
+       controller.AdminAchivement.list,
+        req.body,
+        req,
+        res
+      );
+    }
+  );
 
 module.exports = router;

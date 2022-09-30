@@ -12,7 +12,7 @@ const admin = sequelize.define(
     },
     title: {
       type: DataTypes.STRING,
-      defaultValue: "super-Admin"
+      defaultValue: "super-Admin",
     },
     name: {
       type: DataTypes.STRING,
@@ -24,7 +24,6 @@ const admin = sequelize.define(
     },
     password: {
       type: DataTypes.STRING,
-      
     },
     image: {
       type: DataTypes.STRING,
@@ -52,6 +51,30 @@ const admin = sequelize.define(
     EditPermission: {
       type: DataTypes.INTEGER,
       defaultValue: 0,
+    },
+    dashBoardPermission: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
+    userManagementPermission: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
+    systemConfigPermission: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
+    NotificationPermission: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
+    reportPermission: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
+    adminPermission: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
     },
   },
   {

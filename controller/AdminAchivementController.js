@@ -3,22 +3,34 @@ const Helper = require("../helper/validator.js");
 const Joi = require("joi");
 module.exports={
 Add:async(d,req,res)=>{
-        let data={
-            name:req.body.name,
-            Type:req.body.Type
-        }
-        let user= await Service.AdminAchivementService.Add(data)
-      if(user){
-        return {
-            message:"Add successfull",
-            user:user
-        }
-      }
-      else{ 
-        return {
-            message:"Something worng"
-        }
-      }
+  const schema = Joi.object().keys({
+    name:Joi.string().regex(/^[a-zA-Z ]+$/).trim().required(),
+    Type:Joi.string().required()
+  });
+  let payload = await Helper.verifyjoiSchema(d, schema);
+  if(!payload){
+    return {status:400,message:"Invalid Type"}
+  }else{
+    let data={
+      name:req.body.name,
+      Type:req.body.Type
+  }
+  let user= await Service.AdminAchivementService.Add(data)
+if(user){
+  return {
+    status:200,
+      message:"Add successfull",
+      user:user
+  }
+}
+else{ 
+  return {
+    status:401,
+      message:"Something worng"
+  }
+}
+  }
+       
     },
 getAllAdminsAchivement: async (payloadData) => {
         const schema = Joi.object().keys({
@@ -46,24 +58,28 @@ getAllAdminsAchivement: async (payloadData) => {
         }
       },
 edit: async (d,req,res) => {
-        let data = {
-          Id: req.params.Id,
-          name:d.name, 
-          Type:d.Type
-        };
-        // let user = await Service.AdminAchivementService.get(data);
-        // if (user) {
-          let user = await Service.AdminAchivementService.edit(data);
-          return {
-            status: "Success",
-            message: "Sucessfull edit the admin Achivement",
-          };
-        // }
+  const schema = Joi.object().keys({
+    name:Joi.string().regex(/^[a-zA-Z ]+$/).trim().required(),
+    Type:Joi.string().required()
+  });
+  let payload = await Helper.verifyjoiSchema(d, schema);
+  if(!payload){
+    return{ status:400,message:"Invalid Type"}
+  }
+  else{
+    let data = {
+      Id: req.params.Id,
+      name:d.name, 
+      Type:d.Type
+    };
     
-        // return {
-        //   status: "Failed",
-        //   message: "Not able to edit the user because user not register",
-        // };
+      let user = await Service.AdminAchivementService.edit(data);
+      return {
+        status: 200,
+        message: "Sucessfull edit the admin Achivement",
+      };
+  }
+     
       },     
 deleteAchivement: async (data,req,res) => {
         const datas = {
@@ -84,4 +100,21 @@ deleteAchivement: async (data,req,res) => {
         
         // };
       },
+      list:async(d,req,res)=>{
+        let data={
+            Id:req.params.Id
+          }
+          const user = await Service.AdminAchivementService.get(data);
+          if (user) {
+            return {
+              status: 200,
+              user: user,
+            };
+          } else {
+            return {
+              status: 400,
+              message: "NO DATA FOUND",
+            };
+          }
+    },
 }

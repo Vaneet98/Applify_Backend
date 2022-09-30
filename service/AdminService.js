@@ -159,13 +159,32 @@ exports.updatepassword = (email, hash) => {
       });
   });
 };
-
+exports.updatepasswords = (adminId, hash) => {
+  return new Promise((resolve, reject) => {
+    Model.AdminRegister.update(
+      { password: hash },
+      { where: { adminId: adminId } }
+    )
+      .then((result) => {
+        resolve(result);
+      })
+      .catch((error) => {
+        console.log("getAll err ==>>  ", error);
+      });
+  });
+};
 exports.updateData = (newdata) => {
   return new Promise((resolve,reject)=>{
     Model.AdminRegister.update(
       {
         name: newdata.name,
-        title:newdata.title
+        title:newdata.title,
+         dashBoardPermission: newdata.dashBoardPermission,
+        userManagementPermission: newdata.userManagementPermission,
+        NotificationPermission: newdata.NotificationPermission,
+        reportPermission: newdata.reportPermission,
+        adminPermission: newdata.adminPermission,
+        systemConfigPermission: newdata.systemConfigPermission,
       },
       {
         where: {

@@ -56,7 +56,7 @@ module.exports = {
 
   edit: async (data, req) => {
     const datas = {
-      Id: req.body.Id,
+      Id: data.Id,
       Status: req.body.Status,
       Description: req.body.Description,
     };
@@ -70,7 +70,24 @@ module.exports = {
     }
     return {
       status: "Failed",
-      message: "Not able to edit the user because user not register",
+      message: "Not able to edit the user",
     };
   },
+  list:async(d,req,res)=>{
+    let data={
+        Id:req.params.Id
+      }
+      const user = await Service.ReportContentService.find(data);
+      if (user) {
+        return {
+          status: 200,
+          user: user,
+        };
+      } else {
+        return {
+          status: 400,
+          message: "NO DATA FOUND",
+        };
+      }
+},
 };

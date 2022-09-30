@@ -49,6 +49,16 @@ router.get("/countuserByEmail", (req, res) => {
   );
 });
 
+//Get specific user detail using id
+router.get("/list/:id", (req, res) => {
+  return sendRespose.executeMethod(
+    userController.list,
+    req.body,
+    req,
+    res
+  );
+});
+
 router.get("/getUserBygoogleId", (req, res) => {
   return sendRespose.executeMethod(
     userController.getUserBygoogleId,

@@ -75,6 +75,20 @@ exports.edit = (data) => {
       });
   });
 };
+exports.find = (data) => {
+  return new Promise((resolve, reject) => {
+    Model.ReportContent.findOne({
+      where: { Id: data.Id },
+    })
+      .then((result) => {
+        resolve(result);
+      })
+      .catch((error) => {
+        console.log("getAll err ==>>  ", error);
+      });
+  });
+};
+
 exports.findAll = (data) => {
   return new Promise((resolve, reject) => {
     Model.ReportContent.findAndCountAll({

@@ -91,6 +91,24 @@ module.exports = {
       };
     }
   },
+  
+   list: async (datas,req,res) => {
+    let data={
+      cId:req.params.cId
+    }
+    const user = await Services.categoryService.find(data);
+    if (user) {
+      return {
+        status: 200,
+        user: user,
+      };
+    } else {
+      return {
+        status: 400,
+        message: "NO DATA FOUND",
+      };
+    }
+  },
   //--------  update category -----
   updateCategory: async (d,req, res) => {
     const data = {

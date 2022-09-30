@@ -101,3 +101,16 @@ exports.deleteperson = (data) => {
     });
   })
 };
+
+exports.findUserById = (data) => {
+  return new Promise((resolve,reject)=>{
+    Model.Notification.findOne({
+      where: { notificationId: data.notificationId },
+    }) .then((result) => {
+      resolve(result);
+    })
+    .catch((error) => {
+      console.log("getAll err ==>>  ", error);
+    });
+  })
+};

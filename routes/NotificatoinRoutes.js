@@ -32,7 +32,15 @@ router.get("/list", (req, res) => {
   );
 });
 
-
+//Get specific user detail using id
+router.get("/list/:notificationId", (req, res) => {
+  return sendResponse.executeMethod(
+    controller.NotificationController.list,
+    req.body,
+    req,
+    res
+  );
+});
 
 //3.admin edit the details  IsAuth, Middleware.EditPermis,
 router.put(

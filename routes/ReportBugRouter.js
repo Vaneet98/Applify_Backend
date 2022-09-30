@@ -28,13 +28,24 @@ router.get("/list", (req, res) => {
   );
 });
 
-//3. Edit status and description
-router.put("/edit", IsAuth, Middleware.EditPermis, (req, res) => {
+//3. Edit status and description  IsAuth, Middleware.EditPermis,
+router.put("/edit/:Id",  (req, res) => {
   return sendResponse.executeMethod(
     controller.ReportBugController.edit,
-    req.body,
+    req.params,
     req,
     res
-  );
+  );                      
 });
+router.get(
+  "/list/:Id",
+  (req, res) => {
+    return sendResponse.executeMethod(
+     controller.ReportBugController.list,
+      req.body,
+      req,
+      res
+    );
+  }
+);
 module.exports = router;

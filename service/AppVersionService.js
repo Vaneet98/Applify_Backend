@@ -25,6 +25,20 @@ exports.get = () => {
   });
 };
 
+exports.findAll = (data) => {
+  return new Promise((resolve, reject) => {
+    Model.AppVersion.findOne({
+      where: { AppId: data.AppId },
+    })
+      .then((result) => {
+        resolve(result);
+      })
+      .catch((error) => {
+        console.log("getAll err ==>>  ", error);
+      });
+  });
+};
+
 exports.filter = (criteria, limit, offset) => {
   let where = {};
   let order = [

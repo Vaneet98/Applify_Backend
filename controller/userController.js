@@ -3,7 +3,8 @@ const Service = require("../service");
 const bcrypt = require("bcrypt");
 const otpGenerator = require("otp-generator");
 var jwt = require("jsonwebtoken");
-
+const Helper = require("../helper/validator.js");
+const Joi = require("joi");
 // FOR NODEMAILER
 const nodemailer = require("nodemailer");
 // For Social Login
@@ -16,9 +17,20 @@ var important_OTP;
 
 module.exports = {
   registration: async (data) => {
-    const userData = {
-      email: data.email,
-      phoneNumber: data.phoneNumber,
+    const schema = Joi.object({
+      name: Joi.string().regex(/^[a-zA-Z ]+$/).trim().required(),
+      email: Joi.string().email().required(),
+      password: Joi.string().required(),
+      phoneNumber:Joi.number().integer().required(),
+    });
+    let payload = await Helper.verifyjoiSchema(data, schema);
+    if (!payload) {
+      return { status: "failed", message: "Invalid strings types" };
+    }
+    else{
+       const userData = {
+      email: payload.email,
+      phoneNumber: payload.phoneNumber,
     };
 
     if (userData.email) {
@@ -29,30 +41,22 @@ module.exports = {
           message: "User already exists",
         };
       }
-    } else if (userData.phoneNumber) {
-      const user = await Service.userService.findUserByNumber(userData);
-      if (user) {
-        return {
-          status: 400,
-          message: "User already exists",
-        };
-      }
-    } else if (!userData.email && !userData.phoneNumber && !userData.password) {
+    }  else if (!userData.email || !userData.phoneNumber || !userData.password) {
       return {
         status: 400,
         message: "Please Enter Email & Password",
       };
     }
     try {
-      const value = data.password;
+      const value = payload.password;
       const salt = await bcrypt.genSalt(8);
       const hashPassword = await bcrypt.hash(value, salt);
 
       let userData = {
-        name: data.name,
-        email: data.email,
+        name: payload.name,
+        email: payload.email,
         password: hashPassword,
-        phoneNumber: data.phoneNumber,
+        phoneNumber: payload.phoneNumber,
       };
 
       const user = await Service.userService.registration(userData);
@@ -66,6 +70,8 @@ module.exports = {
         message: "Something went Wrong / Please enter Valid Details ",
       };
     }
+    }
+   
   },
   registrationByFacebook: async (data, req, res) => {
     passport.serializeUser(function (user, done) {
@@ -419,6 +425,23 @@ module.exports = {
       };
     }
   },
+  list: async (datas,req,res) => {
+    let data={
+      id:req.params.id
+    }
+    const user = await Service.userService.findUserById(data);
+    if (user) {
+      return {
+        status: 200,
+        user: user,
+      };
+    } else {
+      return {
+        status: 400,
+        message: "NO DATA FOUND",
+      };
+    }
+  },
   getUserBygoogleId: async (data) => {
     const user = await Service.userService.getUserBygoogleId(data);
     if (user) {
@@ -467,18 +490,29 @@ module.exports = {
     };
   },
    editUser: async (datas, req, res) => {
-    let data = { 
-       id:req.params.id,
-      name: datas.name,
-     phoneNumber:datas.phoneNumber  
-    };
-      let update = await Service.userService.updateData(data);
-      if(update){
-        return { status: "data updated successfully", message: "success",update:update };
-      }
-     else {
-      return { status: "failed", message: "Something is wrong" }; 
+    const schema = Joi.object({
+      name: Joi.string().regex(/^[a-zA-Z ]+$/).trim().required(),
+      phoneNumber:Joi.number().integer().required(),
+    });
+    let payload = await Helper.verifyjoiSchema(datas, schema);
+    if (!payload) {
+      return { status: 400, message: "Invalid strings types" };
     }
+    else{
+      let data = { 
+        id:req.params.id,
+       name: payload.name,
+      phoneNumber:payload.phoneNumber  
+     };
+       let update = await Service.userService.updateData(data);
+       if(update){
+         return { status:200 , message: "data updated successfully",update:update };
+       }
+      else {
+       return { status: 201 ,message: "Something is wrong" }; 
+     }
+    }
+
   }, 
    block: async (d) => {
     let data = {

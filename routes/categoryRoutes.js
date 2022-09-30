@@ -20,6 +20,16 @@ router.get("/list", (req, res) => {
   );
 });
  
+//Get specific user detail using id
+router.get("/list/:cId", (req, res) => {
+  return sendResponse.executeMethod(
+    Ctrl.catagoryCtrl.list,
+    req.body,
+    req,
+    res
+  );
+});
+
 //2.Add categories
 router.post("/addCategory",Ctrl.catagoryCtrl.upload.single("image"), (req, res) => {
   return sendResponse.executeMethod(

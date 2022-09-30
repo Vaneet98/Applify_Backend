@@ -127,6 +127,16 @@ router.get("/list", (req, res) => {
   );
 });
 
+//8.1 specific person details check
+router.get("/lists/:adminId", (req, res) => {
+  return sendResponse.executeMethod(
+    controller.AdminRegister.getSpecificAdmins,
+    req.params,
+    req,
+    res
+  );
+});
+
 
 
 //9.1. Admin can block and unblock the user  IsAuth, Middleware.BlockePermis,

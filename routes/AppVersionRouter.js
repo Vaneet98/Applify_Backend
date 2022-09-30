@@ -30,6 +30,17 @@ const sendResponse=require("../helper/sendResponse")
    }
  );
  
+ router.get(
+  "/list/:AppId",
+  (req, res) => {
+    return sendResponse.executeMethod(
+     controller.AppVersionController.list,
+      req.body,
+      req,
+      res
+    );
+  }
+);
  //Get the all detail
  router.get("/filterVersion", (req, res) => {
    let payload = req.query;
