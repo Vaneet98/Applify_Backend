@@ -9,6 +9,7 @@ const socketIO = require("socket.io");
 const swaggerUI = require("swagger-ui-express");
 const swaggerJsDocs = require("./swagger.json");
 //For chat
+console.log("vaneet")
 const users=[{}];
 const server=http.createServer(app);
 const io=socketIO(server); 
